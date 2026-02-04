@@ -26,3 +26,12 @@ plt.scatter(pca_data[:,0],pca_data[:,1])
 for i in range(len(students)):
     plt.text(pca_data[i,0],pca_data[i,1],students[i])
 plt.show()
+
+df['PC1'] = pca_data[:, 0]
+df['PC2'] = pca_data[:, 1]
+
+#high_performers = df.sort_values(by='PC1', ascending=False)
+low_performers = df.sort_values(by='PC1', ascending=True)
+
+#high_performers
+low_performers
