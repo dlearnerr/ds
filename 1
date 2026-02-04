@@ -1,0 +1,29 @@
+import numpy as np
+from scipy.stats import norm
+
+study_hrs = np.array([2, 4, 6, 8, 10, 12, 14])
+score = np.array([45, 50, 60, 70, 78, 85, 90])
+
+print("Study Hours")
+print("Mean:", np.mean(study_hrs))
+print("Median:", np.median(study_hrs))
+print("Std Dev:", np.std(study_hrs))
+
+print("\nExam Scores")
+print("Mean:", np.mean(score))
+print("Median:", np.median(score))
+print("Std Dev:", np.std(score))
+
+prob = 1 - norm.cdf(75, np.mean(score), np.std(score))
+print("\nProbability of scoring more than 75:", prob)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.histplot(score, bins=7, kde=True, color='lightgreen', edgecolor='red')
+#plt.hist(score, bins=5,edgecolor='black')
+plt.xlabel("Exam Score")
+plt.ylabel("Frequency")
+plt.title("Histogram of Exam Scores")
+plt.show()
+
+plt.scatter(study_hrs,scores,alpha=.7,color='green')
