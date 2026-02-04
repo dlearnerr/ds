@@ -1,0 +1,51 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create DataFrame
+data = {
+    "Student_ID": ["S1","S2","S3","S4","S5","S6","S7","S8"],
+    "Department": ["CSE","ECE","ME","CSE","EEE","CSE","ME","ECE"],
+    "Attendance": [85,92,70,88,75,95,68,80],
+    "Internal_Marks": [78,85,65,82,70,90,60,75],
+    "Final_Grade": ["B","A","C","A","B","A","C","B"]
+}
+
+df = pd.DataFrame(data)
+
+
+# Calculate department-wise average
+dept_avg = df.groupby("Department")["Internal_Marks"].mean()
+
+# Bar chart
+dept_avg.plot(kind="bar")
+plt.xlabel("Department")
+plt.ylabel("Average Internal Marks")
+plt.title("Average Internal Marks by Department")
+plt.show()
+
+plt.scatter(df["Attendance"], df["Internal_Marks"])
+plt.xlabel("Attendance (%)")
+plt.ylabel("Internal Marks")
+plt.title("Attendance vs Internal Marks")
+plt.show()
+
+
+plt.boxplot(df["Internal_Marks"])
+plt.ylabel("Internal Marks")
+plt.title("Box Plot of Internal Marks")
+plt.show()
+
+df["Maths"] = [75, 88, 62, 85, 70, 92, 60, 78]
+df["Physics"] = [72, 84, 60, 80, 68, 90, 58, 75]
+df["Chemistry"] = [78, 86, 65, 82, 72, 88, 62, 77]
+
+# Select subject marks for heatmap
+subject_marks = df[["Maths", "Physics", "Chemistry"]]
+
+# Plot heatmap
+sns.heatmap(subject_marks, annot=True)
+plt.title("Heatmap of Student Performance Across Subjects")
+plt.xlabel("Subjects")
+plt.ylabel("Students")
+plt.show()
